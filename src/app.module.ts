@@ -14,7 +14,8 @@ import { ConfigModule } from '@nestjs/config';
     ProjectsModule,
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'postgres',
+      // host: 'postgres',
+      host: 'multex.cbac8osi8jre.us-east-1.rds.amazonaws.com',
       port: 5432,
       username: 'postgres',
       password: 'postgres',
@@ -22,6 +23,7 @@ import { ConfigModule } from '@nestjs/config';
       synchronize: true,
       autoLoadEntities: true,
       namingStrategy: new SnakeNamingStrategy(),
+      ssl: { rejectUnauthorized: false }, // should be removed, testing purpose
       logging: true,
       entities: [`${__dirname}/src/**/entities/*.entity.ts`],
     }),
